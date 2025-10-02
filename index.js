@@ -368,9 +368,6 @@
 // console.log(new Set(string.toLocaleLowerCase()));
 // console.log(new Set(string.split('')));
 
-
-
-
 // const dictionary = new Map();
 // dictionary.set("copy", "копіювати");
 // dictionary.set("subscribe", "підписатися");
@@ -404,19 +401,164 @@
 //     break;
 // }
 
-//class 
+//class
+//1
 
-function User(name,age){
+// function User(name,age){
+//     this.name = name;
+//     this.age = age;
+// }
+// //2
+// function UserPrototype(){
+//     this.logName = function(){
+//         console.log(this.name);
+
+//     }
+// }
+// 3
+// User.prototype = new UserPrototype();
+
+// class User{
+//     constructor(name,age){
+//         this.name = name;
+//         this.age = age;
+//     }
+//     logName(){
+//         console.log(this.name);
+
+//     }
+// }
+
+// //4
+// const user = new User('Alex',23);
+// console.log(user);
+
+// user.logName()
+
+// class Pet{
+//     constructor(type,name,age){
+//         this.type = type;
+//         this.name = name;
+//         this.age = age;
+//     }
+//     petInfo(){
+//         console.log(this.type,this.name,this.age);
+
+//     }
+//     eat(){
+//         return (`${this.name} eating`);
+
+//     }
+//     sleep(){
+//         return (`${this.name} sleeping`);
+
+//     }
+//     walk(){
+//         return (`${this.name} walking`);
+
+//     }
+// }
+// const pet = new Pet('Cat','Susi','3')
+// pet.petInfo();
+// console.log(pet.eat());
+
+// class BankCard {
+//   constructor(owner,experience,  balance=0) {
+//     this.owner = owner;
+//     this.balance = balance;
+//     this.experience = experience;
+//   }
+//   toString(){
+//     return 'bank card by '+this.owner;
+//   }
+//   addToBalance(money){
+//     return (this.balance += money);
+//   }
+
+//   withdrawBalance(money){
+//     return (this.balance -= money);
+//   }
+//   showBalance(){
+//     return this.balance;
+//   }
+// }
+// const card = new BankCard('qwe123','2025');
+// console.log(card.toString());
+// card.addToBalance(1000);
+// console.log(card.showBalance());
+// card.withdrawBalance(500);
+// console.log(card.showBalance());
+
+class Book {
+  constructor(title, author) {
+    this.title = title;
+    this.author = author;
+    this.id = Book.count++;
+  }
+  static count = 0;
+  showInfo() {
+    return `
+        title = ${this.title}
+        author = ${this.author}
+        `;
+  }
+}
+new Book();
+new Book();
+new Book();
+new Book();
+
+// const book0 = new Book("It", "kiing");
+// console.log(book0.showInfo());
+
+class Reader {
+  constructor(name) {
     this.name = name;
-    this.age = age;
+    this.id = Reader.count++;
+  }
+  static count = 0;
+  showInfo() {
+    return `Name = ${this.name}
+        id = ${this.id}`;
+  }
 }
+// new Reader()
+// new Reader()
+// new Reader()
 
-function UserPrototype(){
-    this.logName = function(){
-        console.log(this.name);
-        
-    }
+// const user = new Reader('Bread');
+// console.log(user.showInfo());
+
+class Library {
+  constructor() {
+    this.book = [];
+    this.readers = [];
+    this.booksAndReaders = [];
+  }
+  addBook(...book) {
+    this.book.push(...book);
+  }
+  addReader(...reader) {
+    this.readers.push(...reader);
+  }
+  addBookForReader(reader,book){
+    this.booksAndReaders.push({ idReader: reader.id,idBook: book.id})
+  }
+  showAllBooks(){
+    this.booksAndReaders.forEach((elem)=>console.log(elem))
+  }
 }
-User.prototype = new UserPrototype();
-const user = newUser('Alex,23');
-user.logName()
+const book1 = new Book("It", "King");
+const book2 = new Book("Autsider", "King");
+const library = new Library();
+library.addBook(book1, book2);
+console.log(library);
+
+const read1 = new Reader('Tom')
+const read2 = new Reader('Bob')
+library.addReader(user1,user2);
+library.addBookForReader(user1,book2);
+library.addBookForReader(user2,book1);
+console.log(library);
+
+
